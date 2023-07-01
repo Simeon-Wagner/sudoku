@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include <QGridLayout>
+#include <QMenuBar>
 #include "cell.h"
 
 class SudokuGridWidget : public QWidget
@@ -19,8 +20,15 @@ public:
 private:
     QGridLayout *layout;
     Cell *cells[9][9];
+    QMenuBar *menuBar;
+    QAction *newGameAction;
+    QAction *hintAction;
+    QAction *undoAction;
 
     void createGrid();
+    void createMenuBar();
+    void undo();
+    void newGame();
 };
 
 #endif //SUDOKU_SUDOKUGRIDWIDGET_H

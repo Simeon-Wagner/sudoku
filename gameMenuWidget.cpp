@@ -66,7 +66,6 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
 
 void GameMenuWidget::startGame(const int level) {
     SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(parentWidget());
-    sudokuGridWidget->setFixedSize(500,500);
     sudokuGridWidget->show();
     hide();
 }
