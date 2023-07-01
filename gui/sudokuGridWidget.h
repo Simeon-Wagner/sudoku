@@ -9,7 +9,7 @@
 #include <QGridLayout>
 #include <QMenuBar>
 
-#include "cell.h"
+#include "Cell.h"
 
 class SudokuGridWidget : public QWidget
 {

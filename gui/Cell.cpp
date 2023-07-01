@@ -11,13 +11,13 @@ Cell::Cell(int row, int col, QWidget *parent) : QLineEdit(parent), row(row), col
     setMaxLength(1);
     setAlignment(Qt::AlignCenter);
     setValidator(new QIntValidator(1, 9, this));  // Set validator to accept numbers between 1 and 9
-    setFont(QFont("Arial", 18));  // Set font size to 16
+    setFont(QFont("Arial", 16));  // Set font size to 16
 
-    connect(this, &QLineEdit::textEdited, this, &Cell::handleTextEdited);
+    connect(this, &Cell::textChanged, this, &Cell::checkInput);
 }
 
-void Cell::handleTextEdited(const QString &text)
-{
-    if (text.size() > 1)
-        setText(text.right(1));  // Replace the text with the last character entered
+void Cell::checkInput(const QString &text) {
+    if(std::equal(text.begin(), text.end(),"0")){
+        clear();
+    }
 }

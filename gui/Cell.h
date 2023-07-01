@@ -8,6 +8,7 @@
 
 #include <QIntValidator>
 #include <QLineEdit>
+#include <QSpinBox>
 
 class Cell : public QLineEdit
 {
@@ -19,7 +20,9 @@ public:
 private:
     int row;
     int col;
-    void handleTextEdited(const QString &text);
+
+private slots:
+    void checkInput(const QString &text);
 };
 
 

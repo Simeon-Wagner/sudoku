@@ -8,7 +8,7 @@
 
 SudokuGridWidget::SudokuGridWidget(QWidget *parent) : QWidget()
 {
-    setFixedSize(500,550);
+    setFixedSize(500,500);
     layout = new QGridLayout(this);
     createGrid();
     createMenuBar();

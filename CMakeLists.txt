@@ -14,7 +14,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(sudoku main.cpp gameMenuWidget.cpp gameMenuWidget.h gameLogic.cpp sudokuGridWidget.cpp sudokuGridWidget.h Cell.cpp Cell.h)
+add_executable(sudoku main.cpp gui/gameMenuWidget.cpp gui/gameMenuWidget.h gameLogic.cpp gui/sudokuGridWidget.cpp gui/sudokuGridWidget.h gui/Cell.cpp gui/Cell.h gameLogic.h)
 target_link_libraries(sudoku
         Qt::Core
         Qt::Gui
