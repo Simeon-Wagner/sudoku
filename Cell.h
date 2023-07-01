@@ -6,6 +6,7 @@
 #define SUDOKU_CELL_H
 
 
+#include <QIntValidator>
 #include <QLineEdit>
 
 class Cell : public QLineEdit
@@ -18,6 +19,7 @@ public:
 private:
     int row;
     int col;
+    void handleTextEdited(const QString &text);
 };
 
 

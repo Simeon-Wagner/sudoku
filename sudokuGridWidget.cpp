@@ -31,11 +31,9 @@ void SudokuGridWidget::createMenuBar(){
     QMenu* newGameMenu = menuBar->addMenu(tr("New Game"));
     QMenu* undoMenu = menuBar->addMenu(tr("Undo"));
 
-
     newGameAction = new QAction(tr("Start New Game"), this);
     newGameMenu->addAction(newGameAction);
     connect(newGameAction, &QAction::triggered, this, &SudokuGridWidget::newGame);
-
 
     undoAction = new QAction(tr("Undo Move"), this);
     undoMenu->addAction(undoAction);
