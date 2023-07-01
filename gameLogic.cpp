@@ -11,6 +11,8 @@ const int TEXTBUFF_SIZE =   81;
 
 //filling the three blocks of a diagonal with random numbers between 1 and 9
 int sudokuField[9][9];
+int sudokuGame[9][9];
+
 
 
 bool isPossible( int row,
@@ -65,8 +67,6 @@ bool solveSudoku(int row, int col)
 
 
  void createSudoku() {
-
-
      //fill the diagonal
      int startBlock = 0;
      int endBlock = 3;
@@ -94,11 +94,50 @@ bool solveSudoku(int row, int col)
          }
      }
      solveSudoku(0,0);
-     for (int i = 0; i < 9; ++i) {
-         for (int j = 0; j < 9; ++j) {
-             std::cout << sudokuField[i][j] << " ";
-         }
-         std::cout << std::endl;
-     }
  }
 
+bool isAmbiguous(){
+    return false;
+}
+
+void createSudokuGame(int amountBlankSpace) {
+    createSudoku();
+    // Print the generated Sudoku game
+    std::cout<<"RESULT"<< std::endl;
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            std::cout << sudokuField[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+    int array[81];
+    for (int i = 0; i < 81; i++) {
+        array[i] = i;
+    }
+
+    do  {
+        std::shuffle(array, array + 81, std::default_random_engine(0));
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                sudokuGame[i][j] = sudokuField[i][j];
+            }
+        }
+
+        for (int i = 0; i < amountBlankSpace; i++) {
+            int row = array[i] / N;
+            int column = array[i] % N;
+            sudokuGame[row][column] = 0;
+        }
+    }while (isAmbiguous());
+    std::cout<<"GAME"<< std::endl;
+    // Print the generated Sudoku game
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            std::cout << sudokuGame[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}

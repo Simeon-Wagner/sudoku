@@ -6,6 +6,6 @@
 #define SUDOKU_GAMELOGIC_H
 
 
-void createSudoku();
+void createSudokuGame(int amountBlankSpace);
 
 #endif //SUDOKU_GAMELOGIC_H
