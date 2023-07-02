@@ -7,6 +7,8 @@
 
 
 #include <QMainWindow>
+#include "../gamelogic.h"
+
 
 class GameMenuWidget : public QMainWindow {
 Q_OBJECT
@@ -15,7 +17,7 @@ public:
     GameMenuWidget(QWidget *parent = nullptr);
 
 private slots:
-    void startGame(const int level);
+    void startGame(Level level);
 };
 
 

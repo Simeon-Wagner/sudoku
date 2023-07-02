@@ -17,9 +17,9 @@ SudokuGridWidget::SudokuGridWidget(QWidget *parent) : QWidget()
 
 void SudokuGridWidget::createGrid()
 {
-    for (int row = 0; row < 9; ++row) {
-        for (int col = 0; col < 9; ++col) {
-            cells[row][col] = new Cell(row, col);
+    for (int row = 0; row < N; ++row) {
+        for (int col = 0; col < N; ++col) {
+            cells[row][col] = new Cell(row, col, sudokuGame[row][col], this);
             layout->addWidget(cells[row][col], row, col);
         }
     }

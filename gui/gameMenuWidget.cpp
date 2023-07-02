@@ -3,8 +3,6 @@
 //
 #include "sudokuGridWidget.h"
 #include <QGridLayout>
-#include <QLineEdit>
-#include <QMenuBar>
 #include <QMenu>
 #include <QPushButton>
 #include <QLabel>
@@ -52,19 +50,22 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
     mainLayout->addWidget(intermediateButton);
     mainLayout->addWidget(hardButton);
 
+
+
     connect(easyButton, &QPushButton::clicked, this, [this]() {
-        startGame(0);
+        startGame(Easy);
     });
     connect(intermediateButton, &QPushButton::clicked, this, [this]() {
-        startGame(1);
+        startGame(Intermediate);
     });
     connect(hardButton, &QPushButton::clicked, this, [this]() {
-        startGame(2);
+        startGame(Expert);
     });
     show();
 }
 
-void GameMenuWidget::startGame(const int level) {
+void GameMenuWidget::startGame(const Level level) {
+    createSudokuGame(static_cast<int>(level));
     SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(parentWidget());
     sudokuGridWidget->show();
     hide();

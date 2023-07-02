@@ -10,6 +10,7 @@
 #include <QMenuBar>
 
 #include "Cell.h"
+#include "../gameLogic.h"
 
 class SudokuGridWidget : public QWidget
 {
@@ -30,6 +31,7 @@ private:
     void createMenuBar();
     void undo();
     void newGame();
+    void isSudokuCompleted();
 };
 
 #endif //SUDOKU_SUDOKUGRIDWIDGET_H
