@@ -31,7 +31,6 @@ private:
     void createMenuBar();
     void undo();
     void newGame();
-    void isSudokuCompleted();
 };
 
 #endif //SUDOKU_SUDOKUGRIDWIDGET_H

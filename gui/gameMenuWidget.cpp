@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <QPushButton>
 #include <QLabel>
+#include <QCheckBox>
 #include "gameMenuWidget.h"
 
 GameMenuWidget::GameMenuWidget(QWidget *parent)
@@ -49,6 +50,39 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
     mainLayout->addWidget(easyButton);
     mainLayout->addWidget(intermediateButton);
     mainLayout->addWidget(hardButton);
+
+
+    QWidget *checkboxWidget = new QWidget(this);
+
+    QHBoxLayout* checkBoxLayout = new QHBoxLayout;
+    checkBoxLayout->setAlignment(Qt::AlignLeft);
+    checkboxWidget->setLayout(checkBoxLayout);
+
+
+    QLabel* label = new QLabel("Multiplayer");
+
+// Create a QCheckBox instance and set its properties
+
+    QCheckBox* checkbox = new QCheckBox;
+
+    QString checkBoxStyle = "QCheckBox {"
+                            "    spacing: 10px;" // Adjust the spacing between the checkbox and label
+                            "}"
+                            "QCheckBox::indicator {"
+                            "    width: 24px;" // Increase the width of the checkbox
+                            "    height: 24px;" // Increase the height of the checkbox
+                            "}"
+                            "QCheckBox::indicator:unchecked {"
+                            "    background-color: grey;" // Set the background color when the checkbox is checked
+                            "}";
+    checkbox->setStyleSheet(checkBoxStyle);
+
+    checkbox->setChecked(true);
+    checkBoxLayout->addWidget(label);
+    checkBoxLayout->addWidget(checkbox);
+
+
+    mainLayout->addWidget(checkboxWidget);
 
 
 
