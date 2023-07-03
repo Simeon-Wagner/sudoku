@@ -31,6 +31,9 @@ void Cell::updateBackground() {
     setStyleSheet(qColor);
 }
 
-
+void Cell::completedSudoku() {
+    QString qColor = "border: 2px solid grey;""color: green;";
+    setStyleSheet(qColor);
+}
 
 

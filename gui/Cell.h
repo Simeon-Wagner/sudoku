@@ -24,6 +24,7 @@ public:
     void setCorrect(bool value){correct= value;}
     int getCorrect(){return correct;}
     QString getQVal(){return text();}
+    void completedSudoku();
 
 private:
     int value = 0;

@@ -79,7 +79,9 @@ void SudokuGridWidget::keyPressEvent(QKeyEvent *event) {
                     cells[row][col] ->setCorrect(true);
                     cells[row][col]->updateBackground();
                     sudokuGame[row][col] = digit;
-                    //isGameFinished();
+                    if(sudokuCompleted()){
+                        gameFinished();
+                    }
                 }
                 else{
                     cells[row][col] ->setCorrect(false);
@@ -120,7 +122,17 @@ void SudokuGridWidget::newGame() {
     gameMenuWidget->show();
     hide();
 }
+void SudokuGridWidget::gameFinished(){
 
+    for (int row = 0; row < N; ++row) {
+        for (int col = 0; col < N; ++col) {
+            cells[row][col]->completedSudoku();
+        }
+    }
+    QMessageBox::information(this, "Sudoku Completed", "Congratulations! You completed the sudoku!");
+}
 void SudokuGridWidget::undo() {
+
+
 
 }

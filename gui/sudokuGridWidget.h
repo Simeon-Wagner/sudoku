@@ -36,6 +36,7 @@ private:
     void createMenuBar();
     void undo();
     void newGame();
+    void gameFinished();
 
     void mousePressEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
