@@ -17,7 +17,7 @@ class SudokuGridWidget : public QWidget
 Q_OBJECT
 
 public:
-    explicit SudokuGridWidget(QWidget *parent = nullptr);
+    explicit SudokuGridWidget(bool mulitplayer, QWidget *parent = nullptr);
 
 private:
     QGridLayout *layout;
@@ -26,6 +26,7 @@ private:
     QAction *newGameAction;
     QAction *hintAction;
     QAction *undoAction;
+    bool multiplayer;
 
     void createGrid();
     void createMenuBar();

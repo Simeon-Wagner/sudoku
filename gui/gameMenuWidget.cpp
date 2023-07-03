@@ -1,12 +1,8 @@
 //
 // Created by wagne on 6/29/2023.
 //
-#include "sudokuGridWidget.h"
-#include <QGridLayout>
-#include <QMenu>
-#include <QPushButton>
-#include <QLabel>
-#include <QCheckBox>
+
+#include <iostream>
 #include "gameMenuWidget.h"
 
 GameMenuWidget::GameMenuWidget(QWidget *parent)
@@ -62,6 +58,7 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
     QLabel* label = new QLabel("Multiplayer");
 
 // Create a QCheckBox instance and set its properties
+    multiplayer = true;
 
     QCheckBox* checkbox = new QCheckBox;
 
@@ -76,31 +73,33 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
                             "    background-color: grey;" // Set the background color when the checkbox is checked
                             "}";
     checkbox->setStyleSheet(checkBoxStyle);
+    checkbox->setChecked(multiplayer);
 
-    checkbox->setChecked(true);
     checkBoxLayout->addWidget(label);
     checkBoxLayout->addWidget(checkbox);
-
-
     mainLayout->addWidget(checkboxWidget);
 
 
+    QObject::connect(checkbox, &QCheckBox::stateChanged, [this](int state) {
+        multiplayer = !multiplayer;
+    });
 
     connect(easyButton, &QPushButton::clicked, this, [this]() {
-        startGame(Easy);
+        startGame(Easy );
     });
     connect(intermediateButton, &QPushButton::clicked, this, [this]() {
-        startGame(Intermediate);
+        startGame(Intermediate );
     });
     connect(hardButton, &QPushButton::clicked, this, [this]() {
-        startGame(Expert);
+        startGame(Expert );
     });
     show();
 }
 
 void GameMenuWidget::startGame(const Level level) {
     createSudokuGame(static_cast<int>(level));
-    SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(parentWidget());
+    SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(multiplayer, parentWidget());
     sudokuGridWidget->show();
     hide();
 }
+

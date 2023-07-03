@@ -6,10 +6,12 @@
 #include "sudokuGridWidget.h"
 #include "gameMenuWidget.h"
 
-SudokuGridWidget::SudokuGridWidget(QWidget *parent) : QWidget()
+SudokuGridWidget::SudokuGridWidget(bool multiplayer, QWidget *parent) : QWidget()
 {
+
     setFixedSize(500,500);
     layout = new QGridLayout(this);
+
     createGrid();
     createMenuBar();
     setLayout(layout);

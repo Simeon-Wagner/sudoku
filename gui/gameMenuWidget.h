@@ -7,6 +7,12 @@
 
 
 #include <QMainWindow>
+#include "sudokuGridWidget.h"
+#include <QGridLayout>
+#include <QMenu>
+#include <QPushButton>
+#include <QLabel>
+#include <QCheckBox>
 #include "../gamelogic.h"
 
 
@@ -15,6 +21,7 @@ Q_OBJECT
 
 public:
     GameMenuWidget(QWidget *parent = nullptr);
+    bool multiplayer;
 
 private slots:
     void startGame(Level level);
