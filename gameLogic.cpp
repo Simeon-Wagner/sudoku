@@ -50,10 +50,10 @@ void printCurrentState(){
         std::cout << std::endl;
     }
 }
-
 bool acceptedEntry( int row, int col, int num)
 {
     for (int x = 0; x <= 8; x++) {
+        std::cout<< row <<" "<< col<<" "<< "Value "<< sudokuGame[row][x];
         if (sudokuGame[row][x] == num) {
             std::cout<< "Mistake within the Column" << std::endl;
             printCurrentState();

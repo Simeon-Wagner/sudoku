@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QMenuBar>
+#include <QKeyEvent>
+#include <QKeyEvent>
 
 #include "Cell.h"
 #include "../gameLogic.h"
@@ -27,11 +29,16 @@ private:
     QAction *hintAction;
     QAction *undoAction;
     bool multiplayer;
+    Cell* pressedCell = nullptr;
+    Cell* cellPressedBefore = nullptr;
 
     void createGrid();
     void createMenuBar();
     void undo();
     void newGame();
+
+    void mousePressEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif //SUDOKU_SUDOKUGRIDWIDGET_H

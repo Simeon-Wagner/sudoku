@@ -5,31 +5,31 @@
 #ifndef SUDOKU_CELL_H
 #define SUDOKU_CELL_H
 
+#include <QLabel>
+#include <algorithm>
+#include <iterator>
+#include <string>
 
-#include <QIntValidator>
-#include <QLineEdit>
-#include <QSpinBox>
-#include "../gameLogic.h"
-
-class Cell : public QLineEdit
-{
-Q_OBJECT
+class Cell : public QLabel {
 
 public:
-    explicit Cell(int row, int col, int value, QWidget *parent = nullptr);
+    explicit Cell( int row=0, int col=0, int value = 0, QWidget *parent = nullptr);
+    void setCellColor(std::string color);
+    static QFont setHintFont();
+    static QFont setValueFont();
+    void updateBackground();
+    int getRow(){return row;}
+    int getCol(){return col;}
+    int getVal(){return value;}
+    void setCorrect(bool value){correct= value;}
+    int getCorrect(){return correct;}
+    QString getQVal(){return text();}
 
 private:
+    int value = 0;
     int row;
     int col;
-    int value;
+    bool correct = true;
 
-private:
-
-
-private slots:
-    void checkInput(const QString &text);
 };
-
-
-
 #endif //SUDOKU_CELL_H
