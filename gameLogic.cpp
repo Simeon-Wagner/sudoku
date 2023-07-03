@@ -53,7 +53,6 @@ void printCurrentState(){
 bool acceptedEntry( int row, int col, int num)
 {
     for (int x = 0; x <= 8; x++) {
-        std::cout<< row <<" "<< col<<" "<< "Value "<< sudokuGame[row][x];
         if (sudokuGame[row][x] == num) {
             std::cout<< "Mistake within the Column" << std::endl;
             printCurrentState();
@@ -260,4 +259,8 @@ bool sudokuCompleted(){
         }
     }
     return true;
+}
+//If the entry is correct the player receives a point
+bool correctEntry(int row, int col, int entry){
+    return sudokuGame[row][col]==entry;
 }

@@ -4,11 +4,13 @@
 
 #include <iostream>
 #include "gameMenuWidget.h"
+#include <QComboBox>
+
 
 GameMenuWidget::GameMenuWidget(QWidget *parent)
         : QMainWindow(parent) {
     setWindowTitle("Sudoku");
-    setFixedSize(500, 500);
+    setFixedSize(500, 600);
 
     QWidget *centralWidget = new QWidget(this);
     setCentralWidget(centralWidget);
@@ -48,42 +50,44 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
     mainLayout->addWidget(hardButton);
 
 
-    QWidget *checkboxWidget = new QWidget(this);
+    QWidget *dropdownWidget = new QWidget(this);
 
-    QHBoxLayout* checkBoxLayout = new QHBoxLayout;
-    checkBoxLayout->setAlignment(Qt::AlignLeft);
-    checkboxWidget->setLayout(checkBoxLayout);
+    QHBoxLayout* dropdownLayout = new QHBoxLayout;
+    dropdownLayout->setAlignment(Qt::AlignLeft);
+    dropdownWidget->setLayout(dropdownLayout);
 
-
-    QLabel* label = new QLabel("Multiplayer");
-
-// Create a QCheckBox instance and set its properties
-    multiplayer = true;
-
-    QCheckBox* checkbox = new QCheckBox;
-
-    QString checkBoxStyle = "QCheckBox {"
-                            "    spacing: 10px;" // Adjust the spacing between the checkbox and label
-                            "}"
-                            "QCheckBox::indicator {"
-                            "    width: 24px;" // Increase the width of the checkbox
-                            "    height: 24px;" // Increase the height of the checkbox
-                            "}"
-                            "QCheckBox::indicator:unchecked {"
-                            "    background-color: grey;" // Set the background color when the checkbox is checked
-                            "}";
-    checkbox->setStyleSheet(checkBoxStyle);
-    checkbox->setChecked(multiplayer);
-
-    checkBoxLayout->addWidget(label);
-    checkBoxLayout->addWidget(checkbox);
-    mainLayout->addWidget(checkboxWidget);
+    QLabel* dropLabel = new QLabel("Amount of Players");
 
 
-    QObject::connect(checkbox, &QCheckBox::stateChanged, [this](int state) {
-        multiplayer = !multiplayer;
+    QComboBox* comboBox = new QComboBox(this);  // Create the QComboBox instance
+
+    // Add items to the dropdown list
+    comboBox->addItem("1 Players");
+    comboBox->addItem("2 Players");
+    comboBox->addItem("3 Players");
+    comboBox->addItem("4 Players");
+
+// Set the initial selection (optional)
+    comboBox->setCurrentIndex(0);
+
+
+// Set the position and size of the dropdown list
+    comboBox->setGeometry(50, 50, 400, 50);
+
+    dropdownLayout->addWidget(dropLabel);
+    dropdownLayout->addWidget(comboBox);
+    mainLayout->addWidget(dropdownWidget);
+
+
+
+    connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [this, comboBox](int index) {
+      //  QString selectedItem = comboBox->itemText(index);
+
+      std::cout<< "Current Index " << index << std::endl;
+      this-> arraySize = index+1;
+      std::cout<< "Current Arraysize " << arraySize << std::endl;
+
     });
-
     connect(easyButton, &QPushButton::clicked, this, [this]() {
         startGame(Easy );
     });
@@ -96,9 +100,10 @@ GameMenuWidget::GameMenuWidget(QWidget *parent)
     show();
 }
 
+
 void GameMenuWidget::startGame(const Level level) {
     createSudokuGame(static_cast<int>(level));
-    SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(multiplayer, parentWidget());
+    SudokuGridWidget *sudokuGridWidget = new SudokuGridWidget(this->arraySize, parentWidget());
     sudokuGridWidget->show();
     hide();
 }

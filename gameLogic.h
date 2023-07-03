@@ -16,6 +16,7 @@ extern int reversedSolvedSudoku[9][9];
 
 void createSudokuGame(int amountBlankSpace);
 bool acceptedEntry(int row, int col, int num);
+bool correctEntry(int row, int col, int num);
 bool sudokuCompleted();
 enum Level {
     Easy = 20,

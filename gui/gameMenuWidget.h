@@ -21,10 +21,13 @@ Q_OBJECT
 
 public:
     GameMenuWidget(QWidget *parent = nullptr);
-    bool multiplayer;
-
+private:
+    //The default is singleplayer
+    int arraySize = 1;
 private slots:
     void startGame(Level level);
+
+
 };
 
 
